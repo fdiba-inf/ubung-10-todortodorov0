@@ -18,6 +18,26 @@ public class Rectangle extends Figure {
         return side1 * 2 + side2 * 2;
     }
 
+package exercise10;
+
+public class Rectangle extends Figure {
+    public Rectangle() {
+        super(new Point(0, 0), 1, 1);
+    }
+
+    public Rectangle(Point startPoint, double height, double width) {
+        super(startPoint, height, width);
+    }
+
+    public Rectangle(Rectangle otherRectangle) {
+        super(otherRectangle.startPoint, otherRectangle.side1, otherRectangle.side2);
+    }
+
+    @Override
+    public double calculatePerimeter() {
+        return side1 * 2 + side2 * 2;
+    }
+
     @Override
     public double calculateArea() {
         return side1 * side2;
@@ -39,7 +59,14 @@ public class Rectangle extends Figure {
 
     @Override
     public boolean containsClick(Point click) {
-        // Check if click point is inside the rectangle
-        return false;
-    }
+      double clickX = click.getX();
+        double clickY = click.getY();
+        double startX = startPoint.getX();
+        double startY = startPoint.getY();
+        boolean xInside = startX < clickX && clickX < startX + side2;
+        boolean yInside = startY < clickY && clickY < startY + side1;
+
+        return xInside && yInside;
+        }
+    
 }
